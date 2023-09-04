@@ -1,0 +1,13 @@
+/* Base styles */
+@import "base/reset";
+
+/* Component styles */
+@import "components/header";
+@import "components/popup";
+@import "components/boxes";
+
+/* Layout styles */
+@import "layout/container";
+
+/* Section styles */
+@import "sections/section-heading";

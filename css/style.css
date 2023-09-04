@@ -1,16 +1,16 @@
-@charset "UTF-8";
+/* Base styles */
 body {
   margin: 0;
   margin-top: 60px;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-image: url(/pictures/oboi.jpg);
 }
 
+/* Component styles */
 header {
-  background-color: #503630;
-  color: #ccc;
-  padding: 10px 20px;
+  background-color: #2a3b4c;
+  color: #fff;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,145 +18,45 @@ header {
   top: 0;
   width: 100%;
   z-index: 2;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.header-right {
+.header__left {
+  font-size: 24px;
+}
+
+.header__center {
   text-align: center;
   flex: 1;
-}
-
-.chapter__add {
-  display: block;
-  text-align: center;
-  font-size: 36px;
-  padding: 25px;
-  color: #fff;
-}
-
-.hover-text-one {
-  display: inline-block;
-  width: 33%;
-  text-align: center;
-}
-
-.hover-text-one figure {
-  position: relative;
-  z-index: 1;
-  display: inline-block;
-  overflow: hidden;
-  background: #527c82;
-  text-align: center;
-  cursor: pointer;
-  height: 350px;
-  width: 500px;
-  border-radius: 12px;
-}
-
-.hover-text-one figure img {
-  opacity: 0.8;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.hover-text-one figure figcaption {
-  padding: 2em;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 1.25em;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.hover-text-one figure figcaption {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.hover-text-one figure h3,
-.hover-text-one figure p {
-  margin: 0;
-}
-
-.hover-text-one figure p {
-  letter-spacing: 1px;
-  font-size: 68.5%;
-}
-
-/* Эффект при наведении */
-figure.effect-text-three {
-  background: #527c82;
-}
-
-figure.effect-text-three img {
-  width: calc(100% + 20px);
-  transition: opacity 0.35s, transform 0.35s;
-  transform: scale(1.1);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-figure.effect-text-three:hover img {
-  opacity: 0.4;
-  transform: translate3d(0, 0, 0);
-}
-
-figure.effect-text-three figcaption {
-  text-align: left;
-}
-
-figure.effect-text-three h3 {
-  position: relative;
-  overflow: hidden;
-  padding: 0.5em 0;
-}
-
-figure.effect-text-three h3::after {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: #fff;
-  content: "";
-  transition: transform 0.35s;
-  transform: translate3d(-100%, 0, 0);
-}
-
-figure.effect-text-three:hover h3::after {
-  transform: translate3d(0, 0, 0);
-}
-
-figure.effect-text-three p {
-  padding: 1em 0;
-  opacity: 0;
-  transition: opacity 0.35s, transform 0.35s;
-  transform: translate3d(100%, 0, 0);
-}
-
-figure.effect-text-three:hover p {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
+  font-size: 18px;
 }
 
 .popup {
   position: relative;
   display: inline-block;
   cursor: pointer;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.popup.show {
+  transform: translateY(0);
 }
 
 .popuptext {
   visibility: hidden;
-  width: 260px;
+  width: 460px;
+  height: 100px;
+  font-size: 36px;
   background-color: #555;
   color: #fff;
   text-align: center;
   border-radius: 6px;
   padding: 8px 0;
   position: absolute;
-  left: 45%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  line-height: 100px;
 }
 
 .show {
@@ -165,20 +65,80 @@ figure.effect-text-three:hover p {
   animation: fadeIn 1s;
 }
 
-/* Add animation (fade in the popup) */
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.box {
+  width: 30%;
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+
+.box img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.box .hover-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.box:hover .hover-content {
+  opacity: 1;
+}
+
+.box .hover-content h3 {
+  color: #fff;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.box .hover-content p {
+  color: #fff;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.box h3 {
+  color: #fff;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+}
+
+/* Layout styles */
+.container,
+#myNewContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Section styles */
+.section-heading {
+  text-align: center;
+  font-size: 36px;
+  color: #ff5733;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  color: #2a3b4c;
 }
